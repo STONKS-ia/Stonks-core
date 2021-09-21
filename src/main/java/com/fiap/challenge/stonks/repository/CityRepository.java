@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.fiap.challenge.stonks.model.CityModel;
+import com.fiap.challenge.stonks.model.City;
 
-public interface CityRepository extends JpaRepository<CityModel, Integer> {
+public interface CityRepository extends JpaRepository<City, Integer> {
 	
-	@Query(value = "SELECT city FROM CityModel city WHERE (city.name like concat ('%', ?1, '%')) OR ?1 IS NULL ")
-    List<CityModel> getAllFilter(String name);
+	@Query(value = "SELECT city FROM City city WHERE (city.name like concat ('%', ?1, '%')) OR ?1 IS NULL ")
+    List<City> findByFilter(String name);
 
 }

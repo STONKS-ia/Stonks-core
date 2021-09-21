@@ -3,9 +3,12 @@ package com.fiap.challenge.stonks.controller;
 import java.net.URI;
 import java.util.List;
 
+import com.fiap.challenge.stonks.dto.UserDto;
+import com.fiap.challenge.stonks.model.ApiResponse;
+import com.fiap.challenge.stonks.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.fiap.challenge.stonks.model.UserModel;
+import com.fiap.challenge.stonks.model.User;
 import com.fiap.challenge.stonks.repository.UserRepository;
 
 @RestController
@@ -26,52 +29,45 @@ import com.fiap.challenge.stonks.repository.UserRepository;
 public class UserController {
 
 	@Autowired
-	UserRepository userRepository;
+	private UserRepository userRepository;
+	@Autowired
+	private UserService userService;
 
 	@GetMapping()
-	public ResponseEntity<List<UserModel>> getAll() {
-		List<UserModel> UserModel = userRepository.findAll();
-		return ResponseEntity.ok(UserModel);
+	public ApiResponse<List<UserDto>> getAll(){
+		return new ApiResponse<>(HttpStatus.OK.value(), "User fetched sucessfully", userService.getAllDto());
 	}
-
-	@GetMapping("/{id}")
-	public ResponseEntity<UserModel> findById(@PathVariable("id") Integer id, Model model) {
-		UserModel UserModel = userRepository.findById(id).get();
-		return ResponseEntity.ok(UserModel);
-	}
-
 	@GetMapping("/list")
-	public ResponseEntity<List<UserModel>> findById(@RequestParam String fullName, @RequestParam String email) {
-		if(fullName.isEmpty())
-			fullName = "";
-		if(email.isEmpty())
-			email = "";
-		List<UserModel> UserModel = userRepository.getAllFilter(fullName, email);
-		return ResponseEntity.ok(UserModel);
+	public ApiResponse<List<UserDto>> findByFilter(@RequestParam String fullName, @RequestParam String email) {
+		return new ApiResponse<>(HttpStatus.OK.value(), "User fetched sucessfully", userService.getAllFilterDto(fullName, email));
+	}
+	@GetMapping("/{id}")
+	public ApiResponse<List<UserDto>> findById(@PathVariable("id") Integer id) {
+		return new ApiResponse<>(HttpStatus.OK.value(), "User fetched sucessfully", userService.getAllByIdDto(id));
 	}
 
 	@PostMapping
-	public ResponseEntity<String> save(@RequestBody UserModel UserModel, BindingResult bindingResult){
+	public ResponseEntity<String> save(@RequestBody User UserModel, BindingResult bindingResult){
 			if(bindingResult.hasErrors()){
 				return ResponseEntity.badRequest().build();
 			}
 			UserModel = userRepository.save(UserModel);
 
 			URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-					.buildAndExpand(UserModel.getuserId()).toUri();
+					.buildAndExpand(UserModel.getUserId()).toUri();
 
 			return ResponseEntity.created(location).header("Created").body("User created");
 	}
 
 
 	@PutMapping("/{id}")
-	public ResponseEntity<String> update(@PathVariable("id") Integer id, @RequestBody UserModel UserModel, BindingResult bindingResult) {
+	public ResponseEntity<String> update(@PathVariable("id") Integer id, @RequestBody User UserModel, BindingResult bindingResult) {
 
 		if(bindingResult.hasErrors()) {
 			return ResponseEntity.badRequest().build();
 		}
 
-		UserModel.setuserId(id);
+		UserModel.setUserId(id);
 		userRepository.save(UserModel);
 
 		return ResponseEntity.ok().header("Updated").body("User updated");
@@ -82,6 +78,5 @@ public class UserController {
 		userRepository.deleteById(id);
 		return ResponseEntity.ok().header("Deleted").body("User deleted");
 	}
-	
 	
 }

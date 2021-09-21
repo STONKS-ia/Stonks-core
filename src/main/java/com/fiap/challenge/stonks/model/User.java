@@ -12,16 +12,16 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "USERS")
-public class UserModel {
+public class User {
 	
 	private int userId;
 	private String fullName;
 	private String email;
 	private String password;
 	private String phone;
-	private CityModel municipio;
+	private City municipio;
 
-	public UserModel(int userId, String fullName, String email, String password, String phone, CityModel municipio) {
+	public User(int userId, String fullName, String email, String password, String phone, City municipio) {
 		this.userId = userId;
 		this.fullName = fullName;
 		this.email = email;
@@ -30,18 +30,18 @@ public class UserModel {
 		this.municipio = municipio;
 	}
 
-	public UserModel() {
+	public User() {
 	}
 
 	@Id
 	@Column(name = "USER_ID")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_SEQ")
 	@SequenceGenerator(name = "USER_SEQ", sequenceName = "USER_SEQ", allocationSize = 1)
-	public int getuserId() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setuserId(int userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
@@ -55,39 +55,39 @@ public class UserModel {
 	}
 
 	@Column(name = "FULLNAME")
-	public String getfullName() {
+	public String getFullName() {
 		return fullName;
 	}
 
-	public void setfullName(String fullName) {
+	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
 
 	@Column(name = "PHONE")
-	public String getphone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setphone(String phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
 	@Column(name = "PASSWORD")
-	public String getpassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public void setpassword(String password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
 	@ManyToOne
 	@JoinColumn(name = "ID_MUNICIPIO", nullable = false)
-	public CityModel getMunicipio() {
+	public City getMunicipio() {
 		return municipio;
 	}
 
-	public void setMunicipio(CityModel municipio) {
+	public void setMunicipio(City municipio) {
 		this.municipio = municipio;
 	}
 

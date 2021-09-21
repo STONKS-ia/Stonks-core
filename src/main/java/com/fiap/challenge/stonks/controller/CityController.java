@@ -3,7 +3,12 @@ package com.fiap.challenge.stonks.controller;
 import java.net.URI;
 import java.util.List;
 
+import com.fiap.challenge.stonks.dto.CityDto;
+import com.fiap.challenge.stonks.dto.UserDto;
+import com.fiap.challenge.stonks.model.ApiResponse;
+import com.fiap.challenge.stonks.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.fiap.challenge.stonks.model.CityModel;
+import com.fiap.challenge.stonks.model.City;
 import com.fiap.challenge.stonks.repository.CityRepository;
 
 @RestController
@@ -25,33 +30,26 @@ import com.fiap.challenge.stonks.repository.CityRepository;
 public class CityController {
 	
 	@Autowired
-	CityRepository cityRepository;
+	private CityRepository cityRepository;
+
+	@Autowired
+	private CityService cityService;
 
 	@GetMapping()
-	public ResponseEntity<List<CityModel>> getAll(){
-		List<CityModel> CityModel = cityRepository.findAll();
-
-		return ResponseEntity.ok(CityModel);
+	public ApiResponse<List<CityDto>> getAll(){
+		return new ApiResponse<>(HttpStatus.OK.value(), "City fetched sucessfully", cityService.getAllDto());
 	}
-
 	@GetMapping("/list")
-	public ResponseEntity<List<CityModel>> findById(@RequestParam String name) {
-		if(name.isEmpty())
-			name = "";
-		List<CityModel> CityModel = cityRepository.getAllFilter(name);
-		return ResponseEntity.ok(CityModel);
+	public ApiResponse<List<CityDto>> findByFilter(@RequestParam String name) {
+		return new ApiResponse<>(HttpStatus.OK.value(), "City fetched sucessfully", cityService.getAllFilterDto(name));
 	}
-
 	@GetMapping("/{id}")
-	public ResponseEntity<CityModel> findById(@PathVariable("id") int id, Model model) {
-
-		CityModel CityModel =  cityRepository.findById(id).get();
-
-		return ResponseEntity.ok(CityModel);
+	public ApiResponse<List<CityDto>> findById(@PathVariable("id") Integer id) {
+		return new ApiResponse<>(HttpStatus.OK.value(), "City fetched sucessfully", cityService.getAllByIdDto(id));
 	}
 
 	@PostMapping()
-	public ResponseEntity<String> save(@RequestBody CityModel CityModel, BindingResult bindingResult) {
+	public ResponseEntity<String> save(@RequestBody City CityModel, BindingResult bindingResult) {
 
 		if(bindingResult.hasErrors()) {
 			return ResponseEntity.badRequest().build();
@@ -60,20 +58,20 @@ public class CityController {
 		 CityModel=  cityRepository.save(CityModel);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(CityModel.getcityId()).toUri();
+				.buildAndExpand(CityModel.getCityId()).toUri();
 		
 		return ResponseEntity.created(location).header("Created").body("City created");
 	} 
 	
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<String> update(@PathVariable("id") int id, @RequestBody CityModel CityModel, BindingResult bindingResult) {
+	public ResponseEntity<String> update(@PathVariable("id") int id, @RequestBody City CityModel, BindingResult bindingResult) {
 		
 		if(bindingResult.hasErrors()) {
 			return ResponseEntity.badRequest().build();
 		}
 		
-		CityModel.setcityId(id);
+		CityModel.setCityId(id);
 		cityRepository.save(CityModel);
 
 		return ResponseEntity.ok().header("Updated").body("City updated");

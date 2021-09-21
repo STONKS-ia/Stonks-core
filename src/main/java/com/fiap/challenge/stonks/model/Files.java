@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "file")
-public class filesDTO {
+public class Files {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,13 +16,13 @@ public class filesDTO {
     private String size;
     private String contentType;
 
-    public filesDTO(UUID id, String name, String size, String contentType){
+    public Files(UUID id, String name, String size, String contentType){
         this.id = id;
         this.name = name;
         this.size = size;
         this.contentType = contentType;
     }
-    public filesDTO(){
+    public Files(){
     }
 
     public UUID getId() {
