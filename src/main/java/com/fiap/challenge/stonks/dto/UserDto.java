@@ -3,7 +3,7 @@ package com.fiap.challenge.stonks.dto;
 import com.fiap.challenge.stonks.model.User;
 
 public class UserDto {
-    private int userId;
+    private Long userId;
     private String fullName;
     private String email;
     private String password;
@@ -21,11 +21,11 @@ public class UserDto {
         return dto;
     }
 
-    public int getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

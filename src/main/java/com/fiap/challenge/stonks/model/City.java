@@ -8,19 +8,33 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+
 @Entity
 @Table(name = "CITIES")
 public class City {
 
-	private int cityId;
+	@Id
+	@Column(name = "CITY_ID")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CITY_SEQ")
+	@SequenceGenerator(name = "CITY_SEQ", sequenceName = "CITY_SEQ", allocationSize = 1)
+	private Long cityId;
+
+	@Column(name = "NAME")
 	private String name;
+
+	@Column(name = "ORIGINAL_PORTAL_URL")
 	private String originalPortalUrl;
+
+	@Column(name = "IMAGE_URL")
 	private String imgUrl;
 
 
-	public City(int cityId, String name, String originalPortalUrl, String imgUrl) {
+	public City( String name, String originalPortalUrl, String imgUrl) {
 		super();
-		this.cityId = cityId;
+
 		this.name = name;
 		this.originalPortalUrl = originalPortalUrl;
 		this.imgUrl = imgUrl;
@@ -30,19 +44,11 @@ public class City {
 		
 	}
 
-	@Id
-	@Column(name = "CITY_ID")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CITY_SEQ")
-	@SequenceGenerator(name = "CITY_SEQ", sequenceName = "CITY_SEQ", allocationSize = 1)
-	public int getCityId() {
+	public Long getCityId() {
 		return cityId;
 	}
 
-	public void setCityId(int cityId) {
-		this.cityId = cityId;
-	}
 
-	@Column(name = "NAME")
 	public String getName() {
 		return name;
 	}
@@ -51,8 +57,7 @@ public class City {
 		this.name = name;
 	}
 
-	@Column(name = "ORIGINAL_PORTAL_URL")
-	public String getoriginalPortalUrl() {
+	public String getOriginalPortalUrl() {
 		return originalPortalUrl;
 	}
 
@@ -60,7 +65,6 @@ public class City {
 		this.originalPortalUrl = originalPortalUrl;
 	}
 
-	@Column(name = "IMAGE_URL")
 	public String getImgUrl() { return imgUrl; }
 
 	public void setImgUrl(String imgUrl) { this.imgUrl = imgUrl; }

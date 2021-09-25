@@ -3,11 +3,13 @@ package com.fiap.challenge.stonks.controller;
 import java.net.URI;
 import java.util.List;
 
+import com.fiap.challenge.stonks.dto.RequestAddRoleDto;
 import com.fiap.challenge.stonks.dto.UserDto;
 import com.fiap.challenge.stonks.model.ApiResponse;
 import com.fiap.challenge.stonks.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -46,20 +48,12 @@ public class UserController {
 		return new ApiResponse<>(HttpStatus.OK.value(), "User fetched sucessfully", userService.getAllByIdDto(id));
 	}
 
-	@PostMapping
-	public ResponseEntity<String> save(@RequestBody User UserModel, BindingResult bindingResult){
-			if(bindingResult.hasErrors()){
-				return ResponseEntity.badRequest().build();
-			}
-			UserModel = userRepository.save(UserModel);
 
-			URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-					.buildAndExpand(UserModel.getUserId()).toUri();
+	@PostMapping(path = "/save", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<User> create(@RequestBody User user) {
 
-			return ResponseEntity.created(location).header("Created").body("User created");
+		return userService.createUser(user);
 	}
-
-
 	@PutMapping("/{id}")
 	public ResponseEntity<String> update(@PathVariable("id") Integer id, @RequestBody User UserModel, BindingResult bindingResult) {
 
@@ -67,7 +61,6 @@ public class UserController {
 			return ResponseEntity.badRequest().build();
 		}
 
-		UserModel.setUserId(id);
 		userRepository.save(UserModel);
 
 		return ResponseEntity.ok().header("Updated").body("User updated");
@@ -77,6 +70,19 @@ public class UserController {
 	public ResponseEntity<String> deleteById(@PathVariable("id") int id) {
 		userRepository.deleteById(id);
 		return ResponseEntity.ok().header("Deleted").body("User deleted");
+	}
+
+
+	@GetMapping(path = "/login", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.ALL_VALUE)
+	public ResponseEntity<Boolean> validatePassword(@RequestParam String login, @RequestParam String password) {
+
+		return userService.validatePassword(login, password);
+	}
+
+	@PostMapping("/addRole")
+	public ResponseEntity<Void> addRoleToUser(@RequestBody RequestAddRoleDto request){
+
+		return userService.addRoleToUser(request.getLogin(), request.getRole());
 	}
 	
 }

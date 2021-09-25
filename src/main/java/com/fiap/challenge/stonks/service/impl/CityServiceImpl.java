@@ -2,9 +2,12 @@ package com.fiap.challenge.stonks.service.impl;
 
 import com.fiap.challenge.stonks.dto.CityDto;
 import com.fiap.challenge.stonks.model.City;
+import com.fiap.challenge.stonks.model.Role;
+import com.fiap.challenge.stonks.model.User;
 import com.fiap.challenge.stonks.repository.CityRepository;
 import com.fiap.challenge.stonks.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +19,14 @@ public class CityServiceImpl implements CityService {
 
     @Autowired
     private CityRepository cityRepository;
+
+    @Override
+    public ResponseEntity<City> createCity(City city) {
+
+        cityRepository.save(city);
+
+        return ResponseEntity.created(null).build();
+    }
 
     @Override
     public List<City> getAll() {

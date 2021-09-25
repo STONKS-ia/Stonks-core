@@ -1,60 +1,59 @@
 package com.fiap.challenge.stonks.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Table(name = "USERS")
 public class User {
-	
-	private int userId;
-	private String fullName;
-	private String email;
-	private String password;
-	private String phone;
-	private City municipio;
 
-	public User(int userId, String fullName, String email, String password, String phone, City municipio) {
-		this.userId = userId;
+	@Column(name = "USER_ID")
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long userId;
+
+	@Column(name = "FULLNAME")
+	private String fullName;
+
+	@Column(name = "EMAIL", unique = true)
+	private String email;
+
+	@Column(name = "LOGIN", unique = true)
+	private String login;
+
+	@Column(name = "PASSWORD")
+	private String password;
+
+	@Column(name = "PHONE")
+	private String phone;
+
+	@ManyToOne
+	@JoinColumn(name = "ID_MUNICIPIO", nullable = false)
+	private City city;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	Collection<Role> roles = new ArrayList<>();
+
+	public User(String fullName, String email, String login, String password, String phone, City city, Collection<Role> roles) {
 		this.fullName = fullName;
 		this.email = email;
+		this.login = login;
 		this.password = password;
 		this.phone = phone;
-		this.municipio = municipio;
+		this.city = city;
+		this.roles = roles;
 	}
 
 	public User() {
 	}
 
-	@Id
-	@Column(name = "USER_ID")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_SEQ")
-	@SequenceGenerator(name = "USER_SEQ", sequenceName = "USER_SEQ", allocationSize = 1)
-	public int getUserId() {
+
+
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
-	@Column(name = "EMAIL")
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	@Column(name = "FULLNAME")
 	public String getFullName() {
 		return fullName;
 	}
@@ -63,16 +62,22 @@ public class User {
 		this.fullName = fullName;
 	}
 
-	@Column(name = "PHONE")
-	public String getPhone() {
-		return phone;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	@Column(name = "PASSWORD")
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -81,14 +86,27 @@ public class User {
 		this.password = password;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "ID_MUNICIPIO", nullable = false)
-	public City getMunicipio() {
-		return municipio;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setMunicipio(City municipio) {
-		this.municipio = municipio;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
+	public Collection<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Collection<Role> roles) {
+		this.roles = roles;
+	}
 }

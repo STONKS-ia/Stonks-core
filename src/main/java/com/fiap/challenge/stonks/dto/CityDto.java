@@ -5,7 +5,7 @@ import com.fiap.challenge.stonks.model.City;
 import javax.persistence.Column;
 
 public class CityDto {
-    private int cityId;
+    private Long cityId;
     private String name;
     private String originalPortalUrl;
     private String imgUrl;
@@ -14,16 +14,16 @@ public class CityDto {
         CityDto dto = new CityDto();
         dto.setCityId(city.getCityId());
         dto.setName(city.getName());
-        dto.setOriginalPortalUrl(city.getoriginalPortalUrl());
+        dto.setOriginalPortalUrl(city.getOriginalPortalUrl());
         dto.setImgUrl(city.getImgUrl());
         return dto;
     }
 
-    public int getCityId() {
+    public Long getCityId() {
         return cityId;
     }
 
-    public void setCityId(int cityId) {
+    public void setCityId(Long cityId) {
         this.cityId = cityId;
     }
 
