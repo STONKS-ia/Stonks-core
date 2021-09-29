@@ -9,7 +9,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CITIES")
+@Table(name = "cities")
 public class City {
 
 	private int cityId;
@@ -18,9 +18,8 @@ public class City {
 	private String imgUrl;
 
 
-	public City(int cityId, String name, String originalPortalUrl, String imgUrl) {
+	public City(String name, String originalPortalUrl, String imgUrl) {
 		super();
-		this.cityId = cityId;
 		this.name = name;
 		this.originalPortalUrl = originalPortalUrl;
 		this.imgUrl = imgUrl;
@@ -31,9 +30,8 @@ public class City {
 	}
 
 	@Id
-	@Column(name = "CITY_ID")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CITY_SEQ")
-	@SequenceGenerator(name = "CITY_SEQ", sequenceName = "CITY_SEQ", allocationSize = 1)
+	@Column(name = "city_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getCityId() {
 		return cityId;
 	}
@@ -42,7 +40,7 @@ public class City {
 		this.cityId = cityId;
 	}
 
-	@Column(name = "NAME")
+	@Column(name = "name")
 	public String getName() {
 		return name;
 	}
@@ -51,7 +49,7 @@ public class City {
 		this.name = name;
 	}
 
-	@Column(name = "ORIGINAL_PORTAL_URL")
+	@Column(name = "original_portal_url")
 	public String getoriginalPortalUrl() {
 		return originalPortalUrl;
 	}
@@ -60,7 +58,7 @@ public class City {
 		this.originalPortalUrl = originalPortalUrl;
 	}
 
-	@Column(name = "IMAGE_URL")
+	@Column(name = "image_url")
 	public String getImgUrl() { return imgUrl; }
 
 	public void setImgUrl(String imgUrl) { this.imgUrl = imgUrl; }

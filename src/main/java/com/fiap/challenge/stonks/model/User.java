@@ -11,7 +11,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "users")
 public class User {
 	
 	private int userId;
@@ -34,9 +34,8 @@ public class User {
 	}
 
 	@Id
-	@Column(name = "USER_ID")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_SEQ")
-	@SequenceGenerator(name = "USER_SEQ", sequenceName = "USER_SEQ", allocationSize = 1)
+	@Column(name = "user_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getUserId() {
 		return userId;
 	}
@@ -45,7 +44,7 @@ public class User {
 		this.userId = userId;
 	}
 
-	@Column(name = "EMAIL")
+	@Column(name = "email")
 	public String getEmail() {
 		return email;
 	}
@@ -54,7 +53,7 @@ public class User {
 		this.email = email;
 	}
 
-	@Column(name = "FULLNAME")
+	@Column(name = "fullname")
 	public String getFullName() {
 		return fullName;
 	}
@@ -63,7 +62,7 @@ public class User {
 		this.fullName = fullName;
 	}
 
-	@Column(name = "PHONE")
+	@Column(name = "phone")
 	public String getPhone() {
 		return phone;
 	}
@@ -72,7 +71,7 @@ public class User {
 		this.phone = phone;
 	}
 
-	@Column(name = "PASSWORD")
+	@Column(name = "password")
 	public String getPassword() {
 		return password;
 	}
@@ -82,7 +81,7 @@ public class User {
 	}
 
 	@ManyToOne
-	@JoinColumn(name = "ID_MUNICIPIO", nullable = false)
+	@JoinColumn(name = "city_id", nullable = false)
 	public City getMunicipio() {
 		return municipio;
 	}

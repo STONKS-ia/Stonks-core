@@ -25,7 +25,7 @@ import com.fiap.challenge.stonks.model.User;
 import com.fiap.challenge.stonks.repository.UserRepository;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
 	@Autowired

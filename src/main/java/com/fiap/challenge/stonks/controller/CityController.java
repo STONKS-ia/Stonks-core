@@ -2,6 +2,7 @@ package com.fiap.challenge.stonks.controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Locale;
 
 import com.fiap.challenge.stonks.dto.CityDto;
 import com.fiap.challenge.stonks.dto.UserDto;
@@ -61,7 +62,7 @@ public class CityController {
 				.buildAndExpand(CityModel.getCityId()).toUri();
 		
 		return ResponseEntity.created(location).header("Created").body("City created");
-	} 
+	}
 	
 	
 	@PutMapping("/{id}")
