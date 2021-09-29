@@ -42,6 +42,7 @@ public class CityController {
 	}
 	@GetMapping("/list")
 	public ApiResponse<List<CityDto>> findByFilter(@RequestParam String name) {
+		name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
 		return new ApiResponse<>(HttpStatus.OK.value(), "City fetched sucessfully", cityService.getAllFilterDto(name));
 	}
 	@GetMapping("/{id}")
