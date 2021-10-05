@@ -27,21 +27,20 @@ public class StonksApplication {
 		return encoder;
 	}
 
-	 @Bean
-	 CommandLineRunner run(UserService userService, RoleService roleService, CityService cityService) {
-		return args -> {
-			roleService.createRole("ROLE_USER");
-			roleService.createRole("ROLE_MANAGER");
-			roleService.createRole("ROLE_ADMIN");
-			roleService.createRole("ROLE_SUPER_ADMIN");
 
-			userService.createUser(new User("Nome completo exemplo", "teste@email.com", "login", "senha123", "1234-4321", userService.getAllById(1L), new ArrayList<>());
+	 @Bean
+	 CommandLineRunner run(UserService userService, CityService cityService) {
+		return args -> {
+
+
+
+ 			//userService.createUser(new User("joe due", "teste@email.com", "login", "senha123", "1234-4321",null, new ArrayList<>()));
 
 			userService.addRoleToUser("login", "ROLE_USER");
-			userService.addRoleToUser("login", "ROLE_MANAGER");
 			userService.addRoleToUser("login", "ROLE_ADMIN");
-			userService.addRoleToUser("login", "ROLE_SUPER_ADMIN");
-		}
+
+		};
 	}
+
 
 }

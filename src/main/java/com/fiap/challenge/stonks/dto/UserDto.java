@@ -3,7 +3,7 @@ package com.fiap.challenge.stonks.dto;
 import com.fiap.challenge.stonks.model.User;
 
 public class UserDto {
-    private Long userId;
+    private int userId;
     private String fullName;
     private String email;
     private String password;
@@ -17,15 +17,15 @@ public class UserDto {
         dto.setEmail(user.getEmail());
         dto.setPassword(user.getPassword());
         dto.setPhone(user.getPhone());
-        dto.setCity(CityDto.from(user.getMunicipio()));
+        dto.setCity(CityDto.from(user.getCity()));
         return dto;
     }
 
-    public Long getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

@@ -11,7 +11,7 @@ public class User {
 	@Column(name = "USER_ID")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long userId;
+	private int userId;
 
 	@Column(name = "FULLNAME")
 	private String fullName;
@@ -28,8 +28,8 @@ public class User {
 	@Column(name = "PHONE")
 	private String phone;
 
-	@ManyToOne
-	@JoinColumn(name = "ID_MUNICIPIO", nullable = false)
+	@ManyToOne(optional = true, fetch = FetchType.LAZY)
+	@JoinColumn(name = "CITY_ID", nullable = true)
 	private City city;
 
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -48,9 +48,7 @@ public class User {
 	public User() {
 	}
 
-
-
-	public Long getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 

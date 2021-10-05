@@ -65,7 +65,7 @@ public class CityController {
 	
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<String> update(@PathVariable("id") Long id, @RequestBody City CityModel, BindingResult bindingResult) {
+	public ResponseEntity<String> update(@PathVariable("id") int id, @RequestBody City CityModel, BindingResult bindingResult) {
 		
 		if(bindingResult.hasErrors()) {
 			return ResponseEntity.badRequest().build();

@@ -58,12 +58,14 @@ public class UserServiceImpl implements UserService {
         return getAllFilter(fullName, email).stream().map(UserDto::from).collect(Collectors.toList());
     }
 
-    public Optional<User> getAllById(Integer id) {
+    public Optional<User> getAllById(int id) {
         return userRepository.findById(id);
     }
-    public List<UserDto> getAllByIdDto(Integer id) {
+
+    public List<UserDto> getAllByIdDto(int id) {
         return getAllById(id).stream().map(UserDto::from).collect(Collectors.toList());
     }
+
 
     public ResponseEntity<User> createUser(User user) {
 

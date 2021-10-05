@@ -27,7 +27,7 @@ import com.fiap.challenge.stonks.model.User;
 import com.fiap.challenge.stonks.repository.UserRepository;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
 	@Autowired
@@ -44,7 +44,7 @@ public class UserController {
 		return new ApiResponse<>(HttpStatus.OK.value(), "User fetched sucessfully", userService.getAllFilterDto(fullName, email));
 	}
 	@GetMapping("/{id}")
-	public ApiResponse<List<UserDto>> findById(@PathVariable("id") Integer id) {
+	public ApiResponse<List<UserDto>> findById(@PathVariable("id") int id) {
 		return new ApiResponse<>(HttpStatus.OK.value(), "User fetched sucessfully", userService.getAllByIdDto(id));
 	}
 
@@ -54,6 +54,7 @@ public class UserController {
 
 		return userService.createUser(user);
 	}
+
 	@PutMapping("/{id}")
 	public ResponseEntity<String> update(@PathVariable("id") Integer id, @RequestBody User UserModel, BindingResult bindingResult) {
 

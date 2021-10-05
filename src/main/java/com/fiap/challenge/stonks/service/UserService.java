@@ -18,8 +18,8 @@ public interface UserService {
     List<User> getAllFilter(String fullName, String email);
     List<UserDto> getAllFilterDto(String fullName, String email);
 
-    Optional<User> getAllById(Long id);
-    List<UserDto> getAllByIdDto(Long id);
+    Optional<User> getAllById(int id);
+    List<UserDto> getAllByIdDto(int id);
 
     ResponseEntity<Boolean> validatePassword(String login, String password);
     ResponseEntity<Void> addRoleToUser(String username, String roleName);
