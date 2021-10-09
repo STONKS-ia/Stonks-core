@@ -5,11 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 public class AuthenticationReponseDto {
-    @JsonProperty("Acces-token")
+    @JsonProperty("token")
     private String accessToken;
-    @JsonProperty("Name")
+    @JsonProperty("name")
     private String name;
-    @JsonProperty("Roles")
+    @JsonProperty("roles")
     private List<String> roles;
 
     public String getAccessToken() {
