@@ -1,7 +1,9 @@
 package com.fiap.challenge.stonks.security;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.servlet.FilterChain;
@@ -9,6 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fiap.challenge.stonks.dto.AuthenticationReponseDto;
+import com.fiap.challenge.stonks.model.Role;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -53,6 +57,8 @@ public class JwtAuthenticatorFilter extends UsernamePasswordAuthenticationFilter
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
 
+		AuthenticationReponseDto authenticationDto = new AuthenticationReponseDto();
+
 		UserDetailsData userData = (UserDetailsData) authResult.getPrincipal();
 
 		String accessToken = JWT.create().withSubject(userData.getUsername())
@@ -60,6 +66,16 @@ public class JwtAuthenticatorFilter extends UsernamePasswordAuthenticationFilter
 				.withClaim("roles", userData.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
 				.sign(ALGORITHM);
 
-		response.getWriter().write(String.format("Access token: %s", accessToken));
+		List<String> roles =  new ArrayList<>();
+		for(Role role : userData.getRoles()) {
+			roles.add(role.getName());
+		}
+		authenticationDto.setName(userData.getUsername());
+		authenticationDto.setAccessToken(accessToken);
+		authenticationDto.setRoles(roles);
+
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		response.getWriter().write(objectMapper.writeValueAsString(authenticationDto));
 	}
 }

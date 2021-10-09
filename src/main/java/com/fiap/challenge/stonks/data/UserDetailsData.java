@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 
+import com.fiap.challenge.stonks.model.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -52,5 +53,9 @@ public class UserDetailsData implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+
+	public Collection<Role> getRoles(){
+		return user.get().getRoles();
 	}
 }

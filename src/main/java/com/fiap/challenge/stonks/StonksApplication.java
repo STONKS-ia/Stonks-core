@@ -21,9 +21,7 @@ public class StonksApplication {
 
 	@Bean
 	public PasswordEncoder getPasswordEncoder() {
-
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
 		return encoder;
 	}
 
@@ -31,13 +29,10 @@ public class StonksApplication {
 	 @Bean
 	 CommandLineRunner run(UserService userService, CityService cityService) {
 		return args -> {
-
-
-
  			//userService.createUser(new User("joe due", "teste@email.com", "login", "senha123", "1234-4321",null, new ArrayList<>()));
-
-			userService.addRoleToUser("login", "ROLE_USER");
-			userService.addRoleToUser("login", "ROLE_ADMIN");
+			//userService.createUser(new User("soneska", "test2e@email.com", "soneka", "theusCuzao", "1234-4321",null, new ArrayList<>()));
+			//userService.addRoleToUser("soneka", "ROLE_USER");
+			//userService.addRoleToUser("soneka", "ROLE_ADMIN");
 
 		};
 	}
