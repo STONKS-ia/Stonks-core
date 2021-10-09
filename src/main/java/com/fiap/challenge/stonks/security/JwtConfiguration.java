@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import java.util.Arrays;
 
@@ -35,7 +36,9 @@ public class JwtConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests()
+		http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues())
+				.and().csrf().disable()
+				.authorizeRequests()
 				.antMatchers(HttpMethod.POST, "/login", "/security-poc/swagger-ui.html").permitAll()
 				.antMatchers(HttpMethod.GET, "/cities", "/auth/login", "/cities/{id}", "/cities/list").permitAll()
 				.anyRequest().authenticated()
@@ -50,9 +53,10 @@ public class JwtConfiguration extends WebSecurityConfigurerAdapter {
 		CorsConfiguration configuration = new CorsConfiguration();
 		configuration.addAllowedOrigin("*");
 		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
-		//configuration.setAllowCredentials(true);
+		configuration.setAllowCredentials(true);
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", configuration);
 		return source;
 	}
+
 }
