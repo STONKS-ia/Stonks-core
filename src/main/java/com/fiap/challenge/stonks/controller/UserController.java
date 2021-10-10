@@ -25,12 +25,12 @@ public class UserController {
 
 	@Autowired
 	private UserRepository userRepository;
-	@Autowired
+
 	private UserService userService;
 
 	@GetMapping()
 	public ApiResponse<List<UserDto>> getAll(){
-		return new ApiResponse<>(HttpStatus.OK.value(), "User fetched sucessfully", userService.getAllDto());
+		return new ApiResponse<>(HttpStatus.OK.value(), "User fetched sucessfully", userService.getAll());
 	}
 	@GetMapping("/list")
 	public ApiResponse<List<UserDto>> findByFilter(@RequestParam String fullName, @RequestParam String email) {
@@ -42,8 +42,10 @@ public class UserController {
 	}
 
 	@PostMapping(path = "/save", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<User> create(@RequestBody User user) {
-		return userService.createUser(user);
+	public ApiResponse<User> create(@RequestParam String roles, @RequestBody User user) {
+		userService.createUser(user);
+		userService.addRoleToUser(user.getLogin(), roles);
+		return new ApiResponse<>(HttpStatus.OK.value(), "User Created sucessfully", user);
 	}
 
 	@PutMapping("/{id}")
@@ -69,5 +71,5 @@ public class UserController {
 
 		return userService.addRoleToUser(request.getLogin(), request.getRole());
 	}
-	
+
 }

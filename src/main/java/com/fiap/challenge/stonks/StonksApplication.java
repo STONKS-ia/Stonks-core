@@ -29,10 +29,12 @@ public class StonksApplication {
 	 @Bean
 	 CommandLineRunner run(UserService userService, CityService cityService) {
 		return args -> {
- 			//userService.createUser(new User("joe due", "teste@email.com", "login", "senha123", "1234-4321",null, new ArrayList<>()));
-			//userService.createUser(new User("soneska", "test2e@email.com", "soneka", "theusCuzao", "1234-4321",null, new ArrayList<>()));
-			//userService.addRoleToUser("soneka", "ROLE_USER");
-			//userService.addRoleToUser("soneka", "ROLE_ADMIN");
+// 			userService.createUser(new User("admin", "teste@email.com", "admin", "admin123", "1234-4321",null, new ArrayList<>()));
+//			userService.createUser(new User("soneska", "test2e@email.com", "soneka", "theusCuzao", "1234-4321",null, new ArrayList<>()));
+//			userService.createUser(new User("joe due", "test2e@email.com", "joe", "senha123", "1234-4321",aguas-de-lindoia, new ArrayList<>()));
+//			userService.addRoleToUser("soneka", "ROLE_USER");
+//			userService.addRoleToUser("joe", "ROLE_USER");
+//			userService.addRoleToUser("admin", "ROLE_ADMIN");
 
 		};
 	}
