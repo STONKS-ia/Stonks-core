@@ -26,6 +26,7 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
 	private UserService userService;
 
 	@GetMapping()
