@@ -28,7 +28,7 @@ public class User {
 	@Column(name = "PHONE")
 	private String phone;
 
-	@ManyToOne(optional = true, fetch = FetchType.LAZY)
+	@ManyToOne(optional = true)
 	@JoinColumn(name = "CITY_ID", nullable = true)
 	private City city;
 

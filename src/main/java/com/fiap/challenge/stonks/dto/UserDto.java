@@ -1,6 +1,7 @@
 package com.fiap.challenge.stonks.dto;
 
 import com.fiap.challenge.stonks.model.User;
+import com.sun.istack.Nullable;
 
 public class UserDto {
     private int userId;
@@ -8,6 +9,7 @@ public class UserDto {
     private String email;
     private String password;
     private String phone;
+    @Nullable
     private CityDto city;
 
     public static UserDto from (User user){
@@ -17,7 +19,9 @@ public class UserDto {
         dto.setEmail(user.getEmail());
         dto.setPassword(user.getPassword());
         dto.setPhone(user.getPhone());
-        dto.setCity(CityDto.from(user.getCity()));
+        if (user.getCity() != null){
+            dto.setCity(CityDto.from(user.getCity()));
+        }
         return dto;
     }
 
