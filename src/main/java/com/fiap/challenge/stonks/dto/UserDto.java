@@ -1,7 +1,11 @@
 package com.fiap.challenge.stonks.dto;
 
+import com.fiap.challenge.stonks.model.Role;
 import com.fiap.challenge.stonks.model.User;
 import com.sun.istack.Nullable;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class UserDto {
     private int userId;
@@ -9,8 +13,10 @@ public class UserDto {
     private String email;
     private String password;
     private String phone;
-    @Nullable
+    //@Nullable
     private CityDto city;
+    Collection<Role> roles = new ArrayList<>();
+
 
     public static UserDto from (User user){
         UserDto dto = new UserDto();
@@ -22,6 +28,7 @@ public class UserDto {
         if (user.getCity() != null){
             dto.setCity(CityDto.from(user.getCity()));
         }
+        dto.setRoles(user.getRoles());
         return dto;
     }
 
@@ -71,5 +78,13 @@ public class UserDto {
 
     public void setCity(CityDto city) {
         this.city = city;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 }
