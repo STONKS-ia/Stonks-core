@@ -29,12 +29,18 @@ public class StonksApplication {
 	 @Bean
 	 CommandLineRunner run(UserService userService, CityService cityService) {
 		return args -> {
-// 			userService.createUser(new User("admin", "teste@email.com", "admin", "admin123", "1234-4321",null, new ArrayList<>()));
-//			userService.createUser(new User("soneska", "test2e@email.com", "soneka", "theusCuzao", "1234-4321",null, new ArrayList<>()));
-//			userService.createUser(new User("joe due", "test2e@email.com", "joe", "senha123", "1234-4321",aguas-de-lindoia, new ArrayList<>()));
-//			userService.addRoleToUser("soneka", "ROLE_USER");
-//			userService.addRoleToUser("joe", "ROLE_USER");
+// 			userService.createUser(new User("admin", "teste@email.com", "admin", "admin123", "91234-1234",null, new ArrayList<>()));
+//			userService.createUser(new User("linesk", "linesk@ig", "esposa", "gatinha123", "91234-1234",null, new ArrayList<>()));
+//			userService.createUser(new User("theus", "mefio@yahoo", "rico", "chefia123", "91234-1234",null, new ArrayList<>()));
+//			userService.createUser(new User("soneska", "soneca@outlook", "soneka", "soneka123", "91234-1234",null, new ArrayList<>()));
+//			userService.createUser(new User("chaves", "pedro@gmail", "chav", "chav123", "91234-1234",null, new ArrayList<>()));
+//			userService.createUser(new User("josao", "zao@terra", "zao", "zevolution", "91234-1234",null, new ArrayList<>()));
 //			userService.addRoleToUser("admin", "ROLE_ADMIN");
+//			userService.addRoleToUser("esposa", "ROLE_ADMIN");
+//			userService.addRoleToUser("rico", "ROLE_ADMIN");
+//			userService.addRoleToUser("soneka", "ROLE_USER");
+//			userService.addRoleToUser("chav", "ROLE_USER");
+//			userService.addRoleToUser("zao", "ROLE_USER");
 
 		};
 	}
