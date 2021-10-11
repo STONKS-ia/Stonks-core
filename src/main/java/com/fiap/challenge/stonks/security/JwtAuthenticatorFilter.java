@@ -66,13 +66,9 @@ public class JwtAuthenticatorFilter extends UsernamePasswordAuthenticationFilter
 				.withClaim("roles", userData.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
 				.sign(ALGORITHM);
 
-		List<String> roles =  new ArrayList<>();
-		for(Role role : userData.getRoles()) {
-			roles.add(role.getName());
-		}
 		authenticationDto.setName(userData.getUsername());
 		authenticationDto.setAccessToken(accessToken);
-		authenticationDto.setRoles(roles);
+		authenticationDto.setRoles(userData.getRoles().stream().findFirst().get().getName());
 
 		ObjectMapper objectMapper = new ObjectMapper();
 

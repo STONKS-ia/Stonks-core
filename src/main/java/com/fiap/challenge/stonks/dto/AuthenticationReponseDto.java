@@ -10,7 +10,7 @@ public class AuthenticationReponseDto {
     @JsonProperty("name")
     private String name;
     @JsonProperty("roles")
-    private List<String> roles;
+    private String roles;
 
     public String getAccessToken() {
         return accessToken;
@@ -28,11 +28,11 @@ public class AuthenticationReponseDto {
         this.name = name;
     }
 
-    public List<String> getRoles() {
+    public String getRoles() {
         return roles;
     }
 
-    public void setRoles(List<String> roles) {
+    public void setRoles(String roles) {
         this.roles = roles;
     }
 }
