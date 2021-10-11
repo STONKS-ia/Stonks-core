@@ -15,7 +15,7 @@ public class UserDto {
     private String phone;
     //@Nullable
     private CityDto city;
-    Collection<Role> roles = new ArrayList<>();
+    private String role;
 
 
     public static UserDto from (User user){
@@ -28,7 +28,7 @@ public class UserDto {
         if (user.getCity() != null){
             dto.setCity(CityDto.from(user.getCity()));
         }
-        dto.setRoles(user.getRoles());
+        dto.setRoles(user.getRoles().stream().findFirst().get().getName());
         return dto;
     }
 
@@ -80,11 +80,11 @@ public class UserDto {
         this.city = city;
     }
 
-    public Collection<Role> getRoles() {
-        return roles;
+    public String getRoles() {
+        return role;
     }
 
-    public void setRoles(Collection<Role> roles) {
-        this.roles = roles;
+    public void setRoles(String role) {
+        this.role = role;
     }
 }
