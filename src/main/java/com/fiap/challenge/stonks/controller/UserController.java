@@ -68,9 +68,8 @@ public class UserController {
 	}
 
 	@PostMapping("/addRole")
-	public ResponseEntity<Void> addRoleToUser(@RequestBody RequestAddRoleDto request){
-
-		return userService.addRoleToUser(request.getLogin(), request.getRole());
+	public ApiResponse<Void> addRoleToUser(@RequestBody RequestAddRoleDto request){
+		return new ApiResponse<>(HttpStatus.OK.value(), "Role added to user sucessfully", userService.addRoleToUser(request.getLogin(), request.getRole()));
 	}
 
 }
