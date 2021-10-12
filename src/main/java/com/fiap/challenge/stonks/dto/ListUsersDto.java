@@ -20,10 +20,19 @@ public class ListUsersDto {
         dto.setEmail(user.getEmail());
         dto.setLogin(user.getLogin());
         dto.setPhone(user.getPhone());
+
         if (user.getCity() != null){
             dto.setCity(user.getCity().getName());
+        } else {
+            dto.setCity("NA");
         }
-        dto.setRoles(user.getRoles().stream().findFirst().get().getName());
+
+        if (user.getRoles().stream().findFirst().get().getName().equals("ROLE_ADMIN")) {
+            dto.setRoles("Administrador");
+        } else {
+            dto.setRoles("Usuário");
+        }
+
         return dto;
     }
 
