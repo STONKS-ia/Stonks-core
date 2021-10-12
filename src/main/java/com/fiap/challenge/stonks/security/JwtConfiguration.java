@@ -20,43 +20,46 @@ import java.util.Arrays;
 @EnableWebSecurity
 @Configuration
 public class JwtConfiguration extends WebSecurityConfigurerAdapter {
-	
-	private final UserDetailsServiceImpl detailsServiceImpl;
-	private final PasswordEncoder encoder;
-	
-	public JwtConfiguration(UserDetailsServiceImpl detailsServiceImpl, PasswordEncoder encoder) {
-		this.detailsServiceImpl = detailsServiceImpl;
-		this.encoder = encoder;
-	}
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(detailsServiceImpl).passwordEncoder(encoder);
-	}
+    private final UserDetailsServiceImpl detailsServiceImpl;
+    private final PasswordEncoder encoder;
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues())
-				.and().csrf().disable()
-				.authorizeRequests()
-				.antMatchers(HttpMethod.POST, "/login", "/security-poc/swagger-ui.html").permitAll()
-				.antMatchers(HttpMethod.GET, "/cities", "/cities/{id}", "/cities/list").permitAll()
-				.anyRequest().authenticated()
-				.and()
-				.addFilter(new JwtValidateFilter(authenticationManager()))
-				.addFilter(new JwtAuthenticatorFilter(authenticationManager()))
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-	}
+    public JwtConfiguration(UserDetailsServiceImpl detailsServiceImpl, PasswordEncoder encoder) {
+        this.detailsServiceImpl = detailsServiceImpl;
+        this.encoder = encoder;
+    }
 
-	@Bean
-	CorsConfigurationSource corsConfigurationSource() {
-		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.addAllowedOrigin("*");
-		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
-		configuration.setAllowCredentials(true);
-		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", configuration);
-		return source;
-	}
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(detailsServiceImpl).passwordEncoder(encoder);
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .cors()
+                .and()
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers(HttpMethod.POST, "/login", "/security-poc/swagger-ui.html").permitAll()
+                .antMatchers(HttpMethod.GET, "/cities", "/cities/{id}", "/cities/list").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .addFilter(new JwtValidateFilter(authenticationManager()))
+                .addFilter(new JwtAuthenticatorFilter(authenticationManager()))
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+    }
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.applyPermitDefaultValues();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
+        configuration.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
 
 }
