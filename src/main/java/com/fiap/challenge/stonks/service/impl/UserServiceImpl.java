@@ -1,5 +1,6 @@
 package com.fiap.challenge.stonks.service.impl;
 
+import com.fiap.challenge.stonks.dto.ListUsersDto;
 import com.fiap.challenge.stonks.dto.UserDto;
 import com.fiap.challenge.stonks.model.Role;
 import com.fiap.challenge.stonks.model.User;
@@ -39,10 +40,10 @@ public class UserServiceImpl implements UserService {
     public List<User> getAll() {
         return userRepository.findAll();
     }
+
     @Override
-    public List<UserDto> getAllDto() {
-        return
-                getAll().stream().map(UserDto::from).collect(Collectors.toList());
+    public List<ListUsersDto> getAllDto() {
+        return getAll().stream().map(ListUsersDto::from).collect(Collectors.toList());
     }
 
     @Override

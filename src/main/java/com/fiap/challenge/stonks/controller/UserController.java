@@ -31,7 +31,7 @@ public class UserController {
 
 	@GetMapping()
 	public ApiResponse<List<UserDto>> getAll(){
-		return new ApiResponse<>(HttpStatus.OK.value(), "User fetched sucessfully", userService.getAll());
+		return new ApiResponse<>(HttpStatus.OK.value(), "User fetched sucessfully", userService.getAllDto());
 	}
 	@GetMapping("/list")
 	public ApiResponse<List<UserDto>> findByFilter(@RequestParam String fullName, @RequestParam String email) {
