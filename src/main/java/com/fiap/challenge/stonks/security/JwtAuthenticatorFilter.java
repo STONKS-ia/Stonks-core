@@ -29,7 +29,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class JwtAuthenticatorFilter extends UsernamePasswordAuthenticationFilter {
 
 	public static final String TOKEN_SECRET = "82537c99-2018-47a4-86a8-a9a05ebd52ba";
-	private final Integer JWT_EXPIRATION_TIME = 14_400_000;
+	private final Integer JWT_EXPIRATION_TIME = 3_600_000;
 	public final Algorithm ALGORITHM = Algorithm.HMAC512(TOKEN_SECRET);
 
 	private final AuthenticationManager authenticationManager;

@@ -40,7 +40,7 @@ public class JwtConfiguration extends WebSecurityConfigurerAdapter {
 				.and().csrf().disable()
 				.authorizeRequests()
 				.antMatchers(HttpMethod.POST, "/login", "/security-poc/swagger-ui.html").permitAll()
-				.antMatchers(HttpMethod.GET, "/cities", "/auth/login", "/cities/{id}", "/cities/list").permitAll()
+				.antMatchers(HttpMethod.GET, "/cities", "/cities/{id}", "/cities/list").permitAll()
 				.anyRequest().authenticated()
 				.and()
 				.addFilter(new JwtValidateFilter(authenticationManager()))
