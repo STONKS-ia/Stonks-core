@@ -11,6 +11,8 @@ public class AuthenticationReponseDto {
     private String name;
     @JsonProperty("roles")
     private String roles;
+    @JsonProperty("cityID")
+    private int cityId;
 
     public String getAccessToken() {
         return accessToken;
@@ -34,5 +36,13 @@ public class AuthenticationReponseDto {
 
     public void setRoles(String roles) {
         this.roles = roles;
+    }
+
+    public int getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
     }
 }

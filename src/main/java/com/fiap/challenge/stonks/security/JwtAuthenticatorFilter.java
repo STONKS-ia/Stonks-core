@@ -70,6 +70,10 @@ public class JwtAuthenticatorFilter extends UsernamePasswordAuthenticationFilter
 		authenticationDto.setAccessToken(accessToken);
 		authenticationDto.setRoles(userData.getRoles().stream().findFirst().get().getName());
 
+		if(userData.getCity() != null){
+			authenticationDto.setCityId(userData.getCity().getCityId());
+		}
+
 		ObjectMapper objectMapper = new ObjectMapper();
 
 		response.getWriter().write(objectMapper.writeValueAsString(authenticationDto));
