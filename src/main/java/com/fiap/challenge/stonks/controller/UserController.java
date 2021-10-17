@@ -18,7 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.fiap.challenge.stonks.model.User;
 import com.fiap.challenge.stonks.repository.UserRepository;
 
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -60,7 +60,6 @@ public class UserController {
 
 		return ResponseEntity.ok().header("Updated").body("User updated");
 	}
-
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteById(@PathVariable("id") int id) {
 		userRepository.deleteById(id);

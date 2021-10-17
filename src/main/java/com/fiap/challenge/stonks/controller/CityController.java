@@ -35,6 +35,10 @@ public class CityController {
 	public ApiResponse<List<CityDto>> getAll(){
 		return new ApiResponse<>(HttpStatus.OK.value(), "City fetched sucessfully", cityService.getAllDto());
 	}
+	@GetMapping("/paged")
+	public ApiResponse<List<CityDto>> getPage(@RequestParam String name, @RequestParam Integer page){
+		return new ApiResponse<>(HttpStatus.OK.value(), "City fetched sucessfully", cityService.getPagedDto(name, page));
+	}
 	@GetMapping("/list")
 	public ApiResponse<List<CityDto>> findByFilter(@RequestParam String name) {
 		return new ApiResponse<>(HttpStatus.OK.value(), "City fetched sucessfully", cityService.getAllFilterDto(name));

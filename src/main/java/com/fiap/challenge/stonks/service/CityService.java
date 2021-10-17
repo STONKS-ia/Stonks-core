@@ -3,6 +3,7 @@ package com.fiap.challenge.stonks.service;
 import com.fiap.challenge.stonks.dto.CityDto;
 import com.fiap.challenge.stonks.model.City;
 import com.fiap.challenge.stonks.model.User;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -14,6 +15,9 @@ public interface CityService {
 
     List<City> getAll();
     List<CityDto> getAllDto();
+
+    Page<City> getPaged(String name, Integer page);
+    Page<CityDto> getPagedDto(String name, Integer page);
 
     List<City> getAllFilter(String name);
     List<CityDto> getAllFilterDto(String name);

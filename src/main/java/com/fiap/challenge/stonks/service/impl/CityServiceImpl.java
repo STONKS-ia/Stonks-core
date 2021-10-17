@@ -7,6 +7,9 @@ import com.fiap.challenge.stonks.model.User;
 import com.fiap.challenge.stonks.repository.CityRepository;
 import com.fiap.challenge.stonks.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -32,15 +35,25 @@ public class CityServiceImpl implements CityService {
     public List<City> getAll() {
         return cityRepository.findAll();
     }
+
     @Override
     public List<CityDto> getAllDto() {
         return getAll().stream().map(CityDto::from).collect(Collectors.toList());
     }
 
     @Override
+    public Page<City> getPaged(String name, Integer page) {
+        Pageable paging = PageRequest.of(page, 40);
+        return cityRepository.findPaged(name, paging);
+    }
+    @Override
+    public Page<CityDto> getPagedDto(String name, Integer page) {
+        return getPaged(name, page).map(CityDto::from);
+    }
+
+    @Override
     public List<City> getAllFilter(String name) {
-        if(name.isEmpty())
-            name = "";
+        if(name.isEmpty()) { name = ""; }
         return cityRepository.findByFilter(name);
     }
     @Override
