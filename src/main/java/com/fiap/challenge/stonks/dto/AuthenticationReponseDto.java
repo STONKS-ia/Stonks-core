@@ -11,7 +11,7 @@ public class AuthenticationReponseDto {
     private String name;
     @JsonProperty("roles")
     private String roles;
-    @JsonProperty("cityID")
+    @JsonProperty("cityId")
     private int cityId;
 
     public String getAccessToken() {
