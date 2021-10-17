@@ -30,18 +30,17 @@ public class StonksApplication {
 	 CommandLineRunner run(UserService userService, CityService cityService) {
 		return args -> {
 // 			userService.createUser(new User("admin", "teste@email.com", "admin", "admin123", "91234-1234",null, new ArrayList<>()));
-//			userService.createUser(new User("linesk", "linesk@ig", "esposa", "gatinha123", "91234-1234",null, new ArrayList<>()));
-//			userService.createUser(new User("theus", "mefio@yahoo", "rico", "chefia123", "91234-1234",null, new ArrayList<>()));
-//			userService.createUser(new User("soneska", "soneca@outlook", "soneka", "soneka123", "91234-1234",null, new ArrayList<>()));
-//			userService.createUser(new User("chaves", "pedro@gmail", "chav", "chav123", "91234-1234",null, new ArrayList<>()));
-//			userService.createUser(new User("josao", "zao@terra", "zao", "zevolution", "91234-1234",null, new ArrayList<>()));
+//			userService.createUser(new User("Aline", "aline_satio@ig", "aline", "aline123", "91234-1234",null, new ArrayList<>()));
+//			userService.createUser(new User("Matheus", "matheus_sena@yahoo", "mateus", "mateus123", "91234-1234",null, new ArrayList<>()));
+//			userService.createUser(new User("Vinicius", "vinicius_scarabelli@outlook", "vinicius", "vini123", "91234-1234",null, new ArrayList<>()));
+//			userService.createUser(new User("Pedro", "pedro_chaves@gmail", "pedro", "chaves123", "91234-1234",null, new ArrayList<>()));
+//			userService.createUser(new User("José", "jose_ventura@terra", "jose", "jose123", "91234-1234",null, new ArrayList<>()));
 //			userService.addRoleToUser("admin", "ROLE_ADMIN");
-//			userService.addRoleToUser("esposa", "ROLE_ADMIN");
-//			userService.addRoleToUser("rico", "ROLE_ADMIN");
-//			userService.addRoleToUser("soneka", "ROLE_USER");
-//			userService.addRoleToUser("chav", "ROLE_USER");
-//			userService.addRoleToUser("zao", "ROLE_USER");
-
+//			userService.addRoleToUser("gerente", "ROLE_ADMIN");
+//			userService.addRoleToUser("supervisor", "ROLE_ADMIN");
+//			userService.addRoleToUser("desenvolvedor", "ROLE_USER");
+//			userService.addRoleToUser("tecnico", "ROLE_USER");
+//			userService.addRoleToUser("engenheiro", "ROLE_USER");
 		};
 	}
 
