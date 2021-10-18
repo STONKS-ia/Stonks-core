@@ -18,7 +18,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.fiap.challenge.stonks.model.User;
 import com.fiap.challenge.stonks.repository.UserRepository;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+//@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(origins = "https://stonks-59b6f.web.app/", maxAge = 3600)
 @RestController
 @RequestMapping("/users")
 public class UserController {
