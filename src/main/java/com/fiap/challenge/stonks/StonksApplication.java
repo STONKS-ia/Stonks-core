@@ -2,6 +2,7 @@ package com.fiap.challenge.stonks;
 
 import com.fiap.challenge.stonks.model.City;
 import com.fiap.challenge.stonks.model.User;
+import com.fiap.challenge.stonks.repository.UserRepository;
 import com.fiap.challenge.stonks.service.CityService;
 import com.fiap.challenge.stonks.service.RoleService;
 import com.fiap.challenge.stonks.service.UserService;
@@ -25,10 +26,9 @@ public class StonksApplication {
 		return encoder;
 	}
 
-
-	 @Bean
-	 CommandLineRunner run(UserService userService, CityService cityService) {
-		return args -> {
+//	 @Bean
+//	 CommandLineRunner run(UserService userService, CityService cityService) {
+//		return args -> {
 // 			userService.createUser(new User("admin", "teste@email.com", "admin", "admin123", "91234-1234",null, new ArrayList<>()));
 //			userService.createUser(new User("Aline", "aline_satio@ig", "aline", "aline123", "91234-1234",null, new ArrayList<>()));
 //			userService.createUser(new User("Matheus", "matheus_sena@yahoo", "mateus", "mateus123", "91234-1234",null, new ArrayList<>()));
@@ -38,11 +38,10 @@ public class StonksApplication {
 //			userService.addRoleToUser("admin", "ROLE_ADMIN");
 //			userService.addRoleToUser("aline", "ROLE_ADMIN");
 //			userService.addRoleToUser("mateus", "ROLE_ADMIN");
-//			userService.addRoleToUser("desenvolvedor", "ROLE_USER");
-//			userService.addRoleToUser("tecnico", "ROLE_USER");
-//			userService.addRoleToUser("engenheiro", "ROLE_USER");
-		};
-	}
-
+//			userService.addRoleToUser("vinicius", "ROLE_USER");
+//			userService.addRoleToUser("pedro", "ROLE_USER");
+//			userService.addRoleToUser("jose", "ROLE_USER");
+//		};
+//	}
 
 }
