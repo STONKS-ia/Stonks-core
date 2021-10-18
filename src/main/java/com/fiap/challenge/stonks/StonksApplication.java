@@ -36,8 +36,8 @@ public class StonksApplication {
 //			userService.createUser(new User("Pedro", "pedro_chaves@gmail", "pedro", "chaves123", "91234-1234",null, new ArrayList<>()));
 //			userService.createUser(new User("José", "jose_ventura@terra", "jose", "jose123", "91234-1234",null, new ArrayList<>()));
 //			userService.addRoleToUser("admin", "ROLE_ADMIN");
-//			userService.addRoleToUser("gerente", "ROLE_ADMIN");
-//			userService.addRoleToUser("supervisor", "ROLE_ADMIN");
+//			userService.addRoleToUser("aline", "ROLE_ADMIN");
+//			userService.addRoleToUser("mateus", "ROLE_ADMIN");
 //			userService.addRoleToUser("desenvolvedor", "ROLE_USER");
 //			userService.addRoleToUser("tecnico", "ROLE_USER");
 //			userService.addRoleToUser("engenheiro", "ROLE_USER");
