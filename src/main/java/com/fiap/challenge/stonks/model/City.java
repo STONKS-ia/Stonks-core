@@ -18,9 +18,7 @@ public class City {
 	private String imgUrl;
 
 
-	public City(int id, String name, String originalPortalUrl, String imgUrl) {
-		super();
-		this.cityId= cityId;
+	public City(String name, String originalPortalUrl, String imgUrl) {
 		this.name = name;
 		this.originalPortalUrl = originalPortalUrl;
 		this.imgUrl = imgUrl;
