@@ -1,0 +1,522 @@
+{
+	"info": {
+		"_postman_id": "074201e4-5728-416e-a759-02138c74fb40",
+		"name": "Stonks-core",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"pedro@gmail\",\r\n    \"fullName\": \"chaves\",\r\n    \"phone\": \"91234-1234\",\r\n    \"login\": \"chav\",\r\n    \"password\": \"senha\",\r\n    \"city\": {\r\n        \"cityId\": 6\r\n    },\r\n    \"roles\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/stonks/users/save?roles=ROLE_USER",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"stonks",
+								"users",
+								"save"
+							],
+							"query": [
+								{
+									"key": "roles",
+									"value": "ROLE_USER"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create user - without city",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"pedro@gmail\",\r\n    \"fullName\": \"chaves\",\r\n    \"phone\": \"91234-1234\",\r\n    \"login\": \"chav\",\r\n    \"password\": \"chav123\",\r\n    \"city\": {\r\n        \"city_id\": 10\r\n    },\r\n    \"roles\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/stonks/users/save?roles=ROLE_USER",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"stonks",
+								"users",
+								"save"
+							],
+							"query": [
+								{
+									"key": "roles",
+									"value": "ROLE_USER"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/stonks/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"stonks",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/stonks/users/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"stonks",
+								"users",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List by name/email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/stonks/users/list?email=&fullName=",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"stonks",
+								"users",
+								"list"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": ""
+								},
+								{
+									"key": "fullName",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update by ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"email\": \"email@outlook.com\",\r\n        \"nome\": \"53413\",\r\n        \"telefone\": \"11914356789\",\r\n        \"senha\": \"senha421\",\r\n        \"municipio\": {\r\n            \"idMunicipio\": 4,\r\n            \"nomeMunicipio\": \"Guarulhos\",\r\n            \"urlPortal\": \"www.gruPortal.com.br\"\r\n        },\r\n        \"funcionario\": {\r\n            \"idFuncionario\": 3,\r\n            \"nomeCompleto\": \"Natália Sophia Isabela Gonçalves\",\r\n            \"cargo\": \"Analista de dados Jr\",\r\n            \"cpf\": \"483.358.401-80\",\r\n            \"cep\": \"72978-970\",\r\n            \"dtNascimente\": null\r\n        }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/elit/users/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/stonks/users/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"stonks",
+								"users",
+								"4"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"soneka\",\r\n    \"roles\": \"ROLE_USER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/stonks/users/addRole",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"stonks",
+								"users",
+								"addRole"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "City",
+			"item": [
+				{
+					"name": "Create city",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Caconde\",\r\n    \"originalPortalUrl\": \"https://www.portaltransparencia.gov.br/localidades/3508702-caconde\",\r\n    \"imgUrl\": \"https://firebasestorage.googleapis.com/v0/b/teste-c2c7c.appspot.com/o/images%2FBras%C3%A3o_de_caconde.jpg?alt=media&token=da2031f2-d3ea-499a-beb5-8390fb069994\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/stonks/cities",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"stonks",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all cities",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/stonks/cities",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"stonks",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List by ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/stonks/cities/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"stonks",
+								"cities",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List by name",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/stonks/cities/list?name=osasco",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"stonks",
+								"cities",
+								"list"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "osasco"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update by ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/stonks/id",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"stonks",
+								"id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Paged",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/stonks/cities/paged?name&page=0",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"stonks",
+								"cities",
+								"paged"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": null
+								},
+								{
+									"key": "page",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "File",
+			"item": []
+		},
+		{
+			"name": "Role",
+			"item": [
+				{
+					"name": "Roles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \r\n    \"login\": \"esposa\",\r\n    \"password\": \"gatinha123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/stonks/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"stonks",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbXSwiZXhwIjoxNjM0NTYyMzMxfQ.JjtjvHS9fiNqogYsuuCCQzdm2PHavZIGYmvn1DJP4aS26lrvewb3AzunihPro3RadVokgP7jrSGZ5ORyCawQzw",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
