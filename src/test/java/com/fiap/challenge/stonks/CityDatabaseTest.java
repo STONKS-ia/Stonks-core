@@ -1,33 +1,18 @@
 package com.fiap.challenge.stonks;
 
 import com.fiap.challenge.stonks.model.City;
-import com.fiap.challenge.stonks.model.User;
 import com.fiap.challenge.stonks.repository.CityRepository;
-import com.fiap.challenge.stonks.repository.UserRepository;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
-class DatabaseTest {
-
-    @Autowired
-    private UserRepository userRepository;
+class CityDatabaseTest {
 
     @Autowired
     private CityRepository cityRepository;
-
-    @Test
-    public void successTest_createUser() {
-        userRepository.save(new User("fullname", "teste@email.com", "40028322", "login", "senha", null, new ArrayList<>()));
-        assertEquals(1, userRepository.findAll().size());
-    }
 
     @Test
     public void successTest_createCity() {
