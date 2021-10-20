@@ -61,9 +61,23 @@ public class CityController {
 				.buildAndExpand(CityModel.getCityId()).toUri();
 		
 		return ResponseEntity.created(location).header("Created").body("City created");
-	} 
-	
-	
+	}
+
+	@RequestMapping(value = "/save", produces = "application/json", method= RequestMethod.POST)
+	public ApiResponse<String> save(@RequestBody City CityModel, @RequestParam Integer id, BindingResult bindingResult) {
+
+		if(bindingResult.hasErrors()) {
+			return new ApiResponse<>(HttpStatus.NOT_ACCEPTABLE.value(), "City body is wrong", null);
+		}
+
+		if(id != 0){
+			CityModel.setCityId(id);
+		}
+
+		return new ApiResponse<>(HttpStatus.OK.value(), "City created sucessfully", cityRepository.save(CityModel));
+
+	}
+
 	@PutMapping("/{id}")
 	public ResponseEntity<String> update(@PathVariable("id") int id, @RequestBody City CityModel, BindingResult bindingResult) {
 		
