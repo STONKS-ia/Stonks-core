@@ -68,6 +68,10 @@ Sistema Tributário Original de Navegação Keep Simple é o projeto desenvolvid
         mvn install
   ```
 
+  ```bash
+    # Populando o banco de dados
+       entrar na classe application descomentar o @Bean Inteiro e rodar a aplicação com ele habilitado UMA vez, após subir a aplicação pode comentar o @Bean novamente. 
+  ```
 ---
 
 
